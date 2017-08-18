@@ -1440,7 +1440,7 @@ static int lsocket_ignore(lua_State *L)
  * 
  * open and initialize this library
  */
-int luaopen_lsocket(lua_State *L)
+LUA_API int luaopen_lsocket(lua_State *L)
 {
 	init_socketlib(L);
 	luaL_newlib(L, lsocket);

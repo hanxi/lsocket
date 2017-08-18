@@ -26,6 +26,9 @@
 #endif
 #define errno WSAGetLastError()
 
+#ifdef EAGAIN
+#undef EAGAIN
+#endif
 #define EAGAIN WSATRY_AGAIN
 #define EWOULDBLOCK WSAEWOULDBLOCK
 // In windows, connect returns WSAEWOULDBLOCK rather than WSAEINPROGRESS
@@ -53,5 +56,10 @@ struct sockaddr_un {
 };
 
 void init_socketlib(lua_State *L);
+
+#ifdef _MSC_VER
+#define strcasecmp stricmp
+#define strncasecmp  strnicmp
+#endif
 
 #endif
